@@ -7,10 +7,6 @@
 
 import UIKit
 
-enum CurrentLight {
-    case red, yellow, green, off
-}
-
 final class ViewController: UIViewController {
 
     // MARK: - IB Outlets
