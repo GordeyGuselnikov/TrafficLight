@@ -44,7 +44,6 @@ final class ViewController: UIViewController {
         }
         
         switch currentLight {
-        
         case .red:
             redLightView.alpha = lightIsOff
             yellowLightView.alpha = lightIsOn
