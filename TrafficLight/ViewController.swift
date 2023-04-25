@@ -7,17 +7,20 @@
 
 import UIKit
 
+enum CurrentLight {
+    case red, yellow, green
+}
+
 final class ViewController: UIViewController {
 
     // MARK: - IB Outlets
-    @IBOutlet var redLightView: UIView!
-    @IBOutlet var yellowLightView: UIView!
-    @IBOutlet var greenLightView: UIView!
-    
-    @IBOutlet var startButton: UIButton!
+    @IBOutlet weak var redLightView: UIView!
+    @IBOutlet weak var yellowLightView: UIView!
+    @IBOutlet weak var greenLightView: UIView!
+    @IBOutlet weak var startButton: UIButton!
     
     // MARK: - Private Properties
-    private var currentLight = CurrentLight.off
+    private var currentLight = CurrentLight.green
     private let lightIsOn: CGFloat = 1
     private let lightIsOff: CGFloat = 0.3
     
@@ -29,32 +32,31 @@ final class ViewController: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        redLightView.layer.cornerRadius = redLightView.frame.width / 2
-        yellowLightView.layer.cornerRadius = yellowLightView.frame.height / 2
-        greenLightView.layer.cornerRadius = greenLightView.frame.height / 2
+        
+        cornerRadius()
     }
     
-    // MARK: - IB Actions
+    // MARK: - IB Action
     @IBAction func startButtonPressed() {
         
-        startButton.setTitle("NEXT", for: .normal)
+        if startButton.currentTitle == "START" {
+            startButton.setTitle("NEXT", for: .normal)
+        }
         
         switch currentLight {
+        
         case .red:
             redLightView.alpha = lightIsOff
-            currentLight = .yellow
             yellowLightView.alpha = lightIsOn
+            currentLight = .yellow
         case .yellow:
             yellowLightView.alpha = lightIsOff
-            currentLight = .green
             greenLightView.alpha = lightIsOn
+            currentLight = .green
         case .green:
             greenLightView.alpha = lightIsOff
-            currentLight = .red
             redLightView.alpha = lightIsOn
-        case .off:
             currentLight = .red
-            redLightView.alpha = lightIsOn
         }
     }
     
@@ -67,6 +69,13 @@ final class ViewController: UIViewController {
         redLightView.alpha = lightIsOff
         yellowLightView.alpha = lightIsOff
         greenLightView.alpha = lightIsOff
+    }
+    
+    private func cornerRadius() {
+        
+        redLightView.layer.cornerRadius = redLightView.frame.width / 2
+        yellowLightView.layer.cornerRadius = yellowLightView.frame.width / 2
+        greenLightView.layer.cornerRadius = greenLightView.frame.width / 2
     }
 }
 
