@@ -77,4 +77,3 @@ final class ViewController: UIViewController {
         greenLightView.layer.cornerRadius = greenLightView.frame.width / 2
     }
 }
-
