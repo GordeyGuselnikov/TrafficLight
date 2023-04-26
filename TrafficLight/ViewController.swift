@@ -7,16 +7,13 @@
 
 import UIKit
 
-enum CurrentLight {
-    case red, yellow, green
-}
-
 final class ViewController: UIViewController {
 
     // MARK: - IB Outlets
     @IBOutlet weak var redLightView: UIView!
     @IBOutlet weak var yellowLightView: UIView!
     @IBOutlet weak var greenLightView: UIView!
+    
     @IBOutlet weak var startButton: UIButton!
     
     // MARK: - Private Properties
@@ -28,7 +25,7 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        setupViews()
     }
     
     override func viewWillLayoutSubviews() {
@@ -60,7 +57,7 @@ final class ViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-    private func setupUI() {
+    private func setupViews() {
         
         view.backgroundColor = .black
         startButton.layer.cornerRadius = 10
@@ -75,5 +72,13 @@ final class ViewController: UIViewController {
         redLightView.layer.cornerRadius = redLightView.frame.width / 2
         yellowLightView.layer.cornerRadius = yellowLightView.frame.width / 2
         greenLightView.layer.cornerRadius = greenLightView.frame.width / 2
+    }
+}
+
+// MARK: - CurrentLight
+extension ViewController {
+    
+    enum CurrentLight {
+        case red, yellow, green
     }
 }
